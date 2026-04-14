@@ -9158,6 +9158,18 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *
     uq4_12_t modifier = UQ_4_12(1.0);
     u32 atkSide = GetBattlerSide(battlerAtk);
 
+    switch (move)
+    {
+    case MOVE_METEOR_BEAM:
+    case MOVE_ELECTRO_SHOT:
+        if (AI_DATA->aiCalcInProgress)
+        {
+            s8 spatkStage = gBattleMons[battlerAtk].statStages[STAT_SPATK];
+            modifier = spatkStage >= 0 ? (2 + spatkStage) / 2 : 2 / (2 - spatkStage);
+        }
+        break;
+    }
+
     // move effect
     switch (gMovesInfo[move].effect)
     {

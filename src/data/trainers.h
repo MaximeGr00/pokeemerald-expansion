@@ -3644,6 +3644,7 @@
             sParty_Wattson1Hard,    // HOF mode party (same as hard mode)
         },
         .additionalPartySizes = {4, 5, 5, 5},
+        .startingStatus = STARTING_STATUS_ELECTRIC_TERRAIN,
     },
 
     [TRAINER_FLANNERY_1] =
@@ -11237,6 +11238,7 @@
             sParty_RoarkHard,    // HOF mode party (same as hard mode)
         },
         .additionalPartySizes = {5, 6, 6, 6},
+        .startingStatus = STARTING_STATUS_SAND,
     },
 
     [TRAINER_GARDENIA] =

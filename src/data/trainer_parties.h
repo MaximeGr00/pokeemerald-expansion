@@ -286,6 +286,16 @@ static const struct TrainerMon sParty_GruntRusturfTunnelVanilla[] = {
 
 static const struct TrainerMon sParty_GruntRusturfTunnelHard[] = {
     {
+    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+    .lvl = 82,
+    .species = SPECIES_ARCHALUDON,
+    .nature = NATURE_MODEST,
+    .ev = TRAINER_PARTY_EVS_MODEST(),
+    .ability = ABILITY_BAD_COMPANY,
+    .heldItem = ITEM_POWER_HERB,
+    .moves = {MOVE_DRACO_METEOR, MOVE_STEEL_BEAM, MOVE_ELECTRO_SHOT, MOVE_DARK_PULSE}
+    },
+    {
     .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),   
     .lvl = 25, 
     .species = SPECIES_PURUGLY,

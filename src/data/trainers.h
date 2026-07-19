@@ -11636,7 +11636,7 @@
             sParty_SunbirdHard,    // hard mode party
             sParty_SunbirdHard,    // HOF mode party (same as hard mode)
         },
-        .additionalPartySizes = {5, 6, 6, 6},
+        .additionalPartySizes = {5, 6, 1, 1},
     },
 
     [TRAINER_SUNEAL] =

@@ -4387,13 +4387,20 @@ void ChangeMonGender(void)
 void ChangeMonIVsForHP(void) 
 {
     u8 newHiddenPowerType = gSpecialVar_0x8005;
-
-    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_HP_IV, &gHiddenPowerTypeInfo[newHiddenPowerType].ivHp);
-    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_ATK_IV, &gHiddenPowerTypeInfo[newHiddenPowerType].ivAtk);
-    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_DEF_IV, &gHiddenPowerTypeInfo[newHiddenPowerType].ivDef);
-    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPATK_IV, &gHiddenPowerTypeInfo[newHiddenPowerType].ivSpatk);
-    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPDEF_IV, &gHiddenPowerTypeInfo[newHiddenPowerType].ivSpdef);
-    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPEED_IV, &gHiddenPowerTypeInfo[newHiddenPowerType].ivSpeed);
+    if (VarGet(VAR_GAME_SETTING_DIFFICULTY_MODE) >= GAME_SETTING_DIFFICULTY_HARD_MODE)
+    {
+        DebugPrintf("Changed type:%d", newHiddenPowerType);
+        SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_HIDDEN_POWER_TYPE, &newHiddenPowerType);
+    }
+    else
+    {
+        SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_HP_IV, &gHiddenPowerTypeInfo[newHiddenPowerType].ivHp);
+        SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_ATK_IV, &gHiddenPowerTypeInfo[newHiddenPowerType].ivAtk);
+        SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_DEF_IV, &gHiddenPowerTypeInfo[newHiddenPowerType].ivDef);
+        SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPATK_IV, &gHiddenPowerTypeInfo[newHiddenPowerType].ivSpatk);
+        SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPDEF_IV, &gHiddenPowerTypeInfo[newHiddenPowerType].ivSpdef);
+        SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPEED_IV, &gHiddenPowerTypeInfo[newHiddenPowerType].ivSpeed);
+    }
     CalculateMonStats(&gPlayerParty[gSpecialVar_0x8004]);
 }
 

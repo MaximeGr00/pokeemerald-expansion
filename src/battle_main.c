@@ -6037,6 +6037,12 @@ u32 GetDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler, u8 *ateBoost,
         }
         break;
     case EFFECT_HIDDEN_POWER:
+        if (VarGet(VAR_GAME_SETTING_DIFFICULTY_MODE)>=GAME_SETTING_DIFFICULTY_HARD_MODE)
+        {
+            moveType = GetMonData(mon, MON_DATA_HIDDEN_POWER_TYPE);
+            return moveType;
+        }
+        else
         {
             u32 typeBits = 0;
             if (monInBattle)

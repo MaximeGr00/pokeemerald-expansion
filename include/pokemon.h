@@ -116,9 +116,9 @@ enum {
     MON_DATA_TERA_TYPE,
     MON_DATA_EVOLUTION_TRACKER,
     MON_DATA_CANT_RANDOMIZE_ABILITY,
-    MON_DATA_IVS_WERE_PERFECTED,
+    MON_DATA_HIDDEN_POWER_TYPE,
     MON_DATA_NATURE_WAS_CHANGED,
-    MON_DATA_ABILITY_WAS_CHANGED
+    MON_DATA_ABILITY_WAS_CHANGED,
 };
 
 enum {
@@ -160,6 +160,7 @@ struct PokemonSubstruct2
     u8 attackEV;
     u8 defenseEV;
     u8 speedEV;
+    //u8 hiddenPowerType;
     //  word
     u32 spAttackEV:8;
     u32 spDefenseEV:8;
@@ -224,7 +225,8 @@ struct BoxPokemon
     u32 hiddenNatureModifier:5; // 31 natures.
     u32 spDefenseIV:5;
     u32 markings:4;
-    u32 ivsWerePerfected:1;
+    // u32 ivsWerePerfected:1;
+    u32 hiddenPowerType:1;
     u32 natureWasChanged:1;
     u32 abilityWasChanged:1;
     u32 padding:1;

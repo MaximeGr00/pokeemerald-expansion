@@ -137,7 +137,14 @@ MauvilleCity_House1_Text_ObtainedStatEditor:
 script MauvilleCity_House1_EventScript_HPChangerDude {
     lock
     faceplayer
-	msgbox(HpChangerHelloCanChange, MSGBOX_YESNO)
+	if (var(VAR_GAME_SETTING_DIFFICULTY_MODE) >= GAME_SETTING_DIFFICULTY_HARD_MODE)
+	{
+		msgbox(HpChangerHelloCanChangeHardMode, MSGBOX_YESNO)
+	}
+	else
+	{
+		msgbox(HpChangerHelloCanChange, MSGBOX_YESNO)
+	}
 
 	if(var(VAR_RESULT) == NO)
 	{
@@ -189,8 +196,16 @@ script MauvilleCity_House1_EventScript_HPChangerDude {
 	}
 
 	copyvar(VAR_0x8005, VAR_RESULT)
-	bufferhptypeinfo(STR_VAR_2, STR_VAR_3, VAR_RESULT)
-	msgbox(AreYouSureHPTypeChange, MSGBOX_YESNO)
+	if (var(VAR_GAME_SETTING_DIFFICULTY_MODE) >= GAME_SETTING_DIFFICULTY_HARD_MODE)
+	{
+		bufferhptypeinfo(STR_VAR_2, STR_VAR_3, VAR_RESULT)
+		msgbox(AreYouSureHPTypeChangeHardMode, MSGBOX_YESNO)
+	}
+	else
+	{
+		bufferhptypeinfo(STR_VAR_2, STR_VAR_3, VAR_RESULT)
+		msgbox(AreYouSureHPTypeChange, MSGBOX_YESNO)
+	}
 
 	if(var(VAR_RESULT) == NO) 
 	{
@@ -275,6 +290,14 @@ text HpChangerHelloCanChange
 	"one of your Pokémon's Hidden Power?"
 }
 
+text HpChangerHelloCanChangeHardMode
+{
+	"Hello, I am the Hidden Power type\n"
+	"changer.\p"
+	"Would you like me to change the type of\n"
+	"one of your Pokémon's Hidden Power?"
+}
+
 text HpChangerNotInMgm
 {
 	"Oh, it looks like you are not in\n"
@@ -296,6 +319,13 @@ text AreYouSureHPTypeChange
 	"IVs to be the following:\p"
 	"HP   Atk   Def   SpAtk   SpDef   Spd\n"
 	"{STR_VAR_3}"
+}
+
+text AreYouSureHPTypeChangeHardMode
+{
+	"So you want me to change\n"
+	"{STR_VAR_1}'s Hidden Power type\l"
+	"to {STR_VAR_2}?"
 }
 
 text HPTypeChangedComeBackSoon

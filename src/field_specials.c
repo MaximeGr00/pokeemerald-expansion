@@ -626,8 +626,8 @@ static void LoadLinkPartnerObjectEventSpritePalette(u16 graphicsId, u8 localEven
 static const struct UCoords8 sMauvilleGymSwitchCoords[] =
 {
     { 0 + MAP_OFFSET, 15 + MAP_OFFSET},
-    { 4 + MAP_OFFSET, 12 + MAP_OFFSET},
-    { 3 + MAP_OFFSET,  9 + MAP_OFFSET},
+    { 4 + MAP_OFFSET, 13 + MAP_OFFSET},
+    { 3 + MAP_OFFSET,  10 + MAP_OFFSET},
     { 8 + MAP_OFFSET,  9 + MAP_OFFSET}
 };
 
@@ -649,7 +649,7 @@ void MauvilleGymSetDefaultBarriers(void)
 {
     int x, y;
     // All switches/barriers are within these coord ranges
-    for (y = 5 + MAP_OFFSET; y < 17 + MAP_OFFSET; y++)
+    for (y = 7 + MAP_OFFSET; y < 17 + MAP_OFFSET; y++)
     {
         for (x = 0 + MAP_OFFSET; x < 9 + MAP_OFFSET; x++)
         {
@@ -748,12 +748,36 @@ void MauvilleGymDeactivatePuzzle(void)
         MapGridSetMetatileIdAt(switchCoords->x, switchCoords->y, METATILE_MauvilleGym_PressedSwitch);
         switchCoords++;
     }
-    for (y = 5 + MAP_OFFSET; y < 17 + MAP_OFFSET; y++)
+    for (y = 1 + MAP_OFFSET; y < 17 + MAP_OFFSET; y++)
     {
         for (x = 0 + MAP_OFFSET; x < 9 + MAP_OFFSET; x++)
         {
             switch (MapGridGetMetatileIdAt(x, y))
             {
+            case METATILE_MauvilleGym_GreenBeamShadowH1_On:
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamShadow_Off);
+                break;
+            case METATILE_MauvilleGym_GreenBeamShadowH2_On:
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamShadowH2_Off);
+                break;
+            case METATILE_MauvilleGym_GreenBeamDoubleH1_On:
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamH1_Off);
+                break;
+            case METATILE_MauvilleGym_GreenBeamDoubleH2_On:
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamH2_Off);
+                break;
+            case METATILE_MauvilleGym_GreenBeamPlatformH1_On:
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamH1_Off);
+                break;
+            case METATILE_MauvilleGym_GreenBeamPlatformH2_On:
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamH2_Off);
+                break;
+            case METATILE_MauvilleGym_GreenBeamPlatformH3_On:
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamH3_Off);
+                break;
+            case METATILE_MauvilleGym_GreenBeamPlatformH4_On:
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamH4_Off);
+                break;
             case METATILE_MauvilleGym_GreenBeamH1_On:
                 MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamH1_Off);
                 break;
@@ -795,6 +819,60 @@ void MauvilleGymDeactivatePuzzle(void)
         }
     }
 }
+
+void MauvilleGymActivateRing(void)
+{
+    int i, x, y;
+    const struct UCoords8 *switchCoords = sMauvilleGymSwitchCoords;
+    for (i = ARRAY_COUNT(sMauvilleGymSwitchCoords) - 1; i >= 0; i--)
+    {
+        MapGridSetMetatileIdAt(switchCoords->x, switchCoords->y, METATILE_MauvilleGym_PressedSwitch);
+        switchCoords++;
+    }
+    for (y = 1 + MAP_OFFSET; y < 7 + MAP_OFFSET; y++)
+    {
+        for (x = 0 + MAP_OFFSET; x < 9 + MAP_OFFSET; x++)
+        {
+            switch (MapGridGetMetatileIdAt(x, y))
+            {
+            case METATILE_MauvilleGym_GreenBeamShadow_Off:
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamShadowH1_On);
+                break;
+            case METATILE_MauvilleGym_GreenBeamShadowH2_Off:
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamShadowH2_On);
+                break;
+            case METATILE_MauvilleGym_GreenBeamPlatformH1_Off:
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamPlatformH1_On);
+                break;
+            case METATILE_MauvilleGym_GreenBeamPlatformH2_Off:
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamPlatformH2_On);
+                break;
+            case METATILE_MauvilleGym_GreenBeamPlatformH3_Off:
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamPlatformH3_On);
+                break;
+            case METATILE_MauvilleGym_GreenBeamPlatformH4_Off:
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamPlatformH4_On);
+                break;
+            case METATILE_MauvilleGym_RedBeamH3_Off:
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamH3_On);
+                break;
+            case METATILE_MauvilleGym_RedBeamH4_Off:
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamH4_On);
+                break;
+            case METATILE_MauvilleGym_FloorTile:
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamV2_On | MAPGRID_COLLISION_MASK);
+                break;
+            case METATILE_MauvilleGym_PoleBottom_Off:
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamV1_On | MAPGRID_COLLISION_MASK);
+                break;
+            case METATILE_MauvilleGym_PoleTop_Off:
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_PoleTop_On | MAPGRID_COLLISION_MASK);
+                break;
+            }
+        }
+    }
+}
+
 
 static const bool8 sSlidingDoorNextFrameDelay[] = {0, 1, 1, 1, 1};
 

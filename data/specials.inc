@@ -152,6 +152,7 @@ gSpecials::
 	def_special ShowContestPainting  @ Unused, redundant with showcontestpainting command
 	def_special MauvilleGymSetDefaultBarriers
 	def_special MauvilleGymPressSwitch
+	def_special MauvilleGymActivateRing
 	def_special ShowFieldMessageStringVar4
 	def_special DrawWholeMapView
 	def_special StorePlayerCoordsInVars
